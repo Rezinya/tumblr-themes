@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+{block:Options}
+<meta name="image:Background" content="">
+<meta name="image:Sidebar" content="">
+
+<meta name="color:Background Color" content="#5d6f84">
+<meta name="color:Background Posts" content="f2f2f0">
+<meta name="color:Text" content="#29282d">
+<meta name="color:Text on Bars" content="#f2f2f2">
+<meta name="color:Border" content="#a2adb8">
+<meta name="color:Accent" content="#6a7ca2">
+<meta name="color:Accent on Hover" content="#536190">
+<meta name="color:Muted" content="#c5ccd3">
+
+<meta name="text:Font Size" content="15">
+<meta name="text:Link 1" content="link one">
+<meta name="text:Link 1 URL" content="">
+<meta name="text:Link 2" content="link two">
+<meta name="text:Link 2 URL" content="">
+<meta name="text:Link 3" content="link three">
+<meta name="text:Link 3 URL" content="">
+<meta name="text:Link 4" content="link four">
+<meta name="text:Link 4 URL" content="">
+
+<meta name="if:Round Corners" content="0">
+<meta name="if:Show Tags" content="1">
+<meta name="if:Reblog Link" content="1">
+<meta name="if:Endless Scroll" content="0">
+{/block:Options}
+
+<!--
+
+    Lost Light Redux by @reziakti (https://reziakti.tumblr.com/)
+
+    Credits:
+    - Based on Lost Light theme by @viwan-th (https://viwan-th.tumblr.com)
+    - Icons by Lucide (https://lucide.dev/)
+    - NPF photosets script by @codematurgy (https://github.com/boscoxvi/npfphotosets)
+
+-->
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{block:TagPage}{lang:Posts tagged Tag} — {/block:TagPage}{block:SearchPage}{lang:SearchResultCount results for SearchQuery}{block:NoSearchResults}{lang:No posts containing SearchQuery}{/block:NoSearchResults} — {/block:SearchPage}{block:DayPage}{lang:Posted on Month DayOfMonth Year} — {/block:DayPage}{block:PostSummary}{PostSummary} — {/block:PostSummary}{Title}</title>{block:Description}
+        <meta name="description" content="{MetaDescription}">{/block:Description}
+        <link rel="shortcut icon"  href="{Favicon}">
+        <link rel="alternate" type="application/rss+xml" href="{RSS}">
+        <link rel="stylesheet" href="https://static.tumblr.com/pgw4g7b/vSws41dgy/lost-light-redux.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/boscoxvi/npfphotosets/npfphotosetstyle.css">
+
+        <script src="https://unpkg.com/lucide@latest"></script>
+        <script src="https://static.tumblr.com/mtdphun/fNjmfyzjf/dynamic_scroll.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/boscoxvi/npfphotosets/npfphotosets.js"></script>
+
+<style>
+:root {
+    --sidebar-width: 300px;
+    --post-width: 540px;
+    --post-vertical-spacing: 20px;
+
+    --title-font: {TitleFont};
+    --title-font-weight: {TitleFontWeight};
+    --font-size: {text:Font Size}px;
+
+    --background: {color:Background Color};
+    --background-posts: {color:Background Posts};
+    --title: {TitleColor};
+    --text: {RGBcolor:Text};
+    --text-bar: {RGBcolor:Text on Bars};
+    --border: {RGBcolor:Border};
+    --accent: {RGBcolor:Accent};
+    --accent-hover: {RGBcolor:Accent on Hover};
+    --muted: {RGBcolor:Muted};
+}
+
+body {
+    background-image: url('https://static.tumblr.com/pgw4g7b/M54pbohns/bgtexture_reziakti.png');
+    background-repeat: repeat;
+}
+</style>
+    </head>
+
+    <body>
+        <div id="page-container">
+        <section id="side-column">
+            <div class="sidebar">
+                <a href="{BlogUrl}">
+                    <h1 class="blog-title">{Title}</h1>
+                    <div class="sidebar-image"><img src="{image:Sidebar}" alt="{Title}"></div>
+                </a>
+
+                <nav class="bar side-nav">
+                    <a href="/">{lang:home}</a> · {block:AskEnabled}
+                    <a href="/ask">{lang:ask}</a> · {/block:AskEnabled}
+                    <a href="/archive">{lang:archive}</a> · 
+                    <a href="https://viwan-th.tumblr.com" target="blank" title="lost light theme">theme</a><!-- PLEASE DO NOT REMOVE CREDIT -->
+                </nav>
+
+                <div class="description">{Description}</div>
+
+                {block:IndexPage}
+                <div class="bar pagination">{block:PreviousPage}
+                    <a href="{PreviousPage}">«</a>{/block:PreviousPage} 
+                    Page {CurrentPage} of {TotalPages} {block:NextPage}
+                    <a href="{NextPage}">»</a>{/block:NextPage}
+                </div>
+                {/block:IndexPage}
+
+                <div id="custom-links">{block:ifLink1}
+                    <a href="{text:Link 1 URL}">{text:Link 1}</a>{/block:ifLink1}{block:ifLink2}
+                    <a href="{text:Link 2 URL}">{text:Link 2}</a>{/block:ifLink2}{block:ifLink3}
+                    <a href="{text:Link 3 URL}">{text:Link 3}</a>{/block:ifLink3}{block:ifLink4}
+                    <a href="{text:Link 4 URL}">{text:Link 4}</a>{/block:ifLink4}
+                </div>
+            </div>
+        </section>
+
+        <main id="posts" role="feed">
+            {block:SearchPage}
+            <article class="post post-callout">
+                <div class="post-content">
+                    <h2>Search Results</h2>
+                    {lang:Found SearchResultCount results for SearchQuery 2}
+                    {block:NoSearchResults}{lang:No results found for SearchQuery 2}{/block:NoSearchResults}
+                </div>
+            </article>
+            {/block:SearchPage}
+        
+            {block:TagPage}
+            <article class="post post-callout">
+                <div class="post-content">
+                    <h2>Tagged Posts</h2>
+                    {lang:Showing TagResultCount posts tagged Tag 2}
+                </div>
+            </article>
+            {/block:TagPage}
+            
+            {block:DayPage}
+            <article class="post post-callout">
+                <div class="post-content">
+                    <h2>Dated Posts</h2>
+                    {lang:Posts made on Month DayOfMonth Year}
+                </div>
+            </article>
+            {/block:DayPage}
+            
+            {block:NoPosts}
+            <article class="post post-callout">
+                <div class="post-content">
+                    <h2>{lang:No Posts}</h2>
+                    {lang:This Tumblr has no posts}
+                </div>
+            </article>
+            {/block:NoPosts}
+            {block:Posts}
+            <article class="post post-{PostType} {block:PinnedPostLabel}{block:IndexPage}pinned{/block:IndexPage}{/block:PinnedPostLabel}" {block:Date}id="{PostID}"{/block:Date}>
+                {block:Text}
+                <section class="post-content">{block:Title}
+                    <h2><a href="{Permalink}">{Title}</a></h2>{/block:Title}{block:NotReblog}
+                    <div class="post-body">{Body}</div>{/block:NotReblog}
+                </section>
+                {/block:Text}
+
+                {block:Photo}
+                <section class="post-content">
+                    <figure class="photo">
+                        <a href="#" onclick="Tumblr.Lightbox.init([{ width: {PhotoWidth-HighRes}, height: {PhotoHeight-HighRes}, low_res: '{PhotoURL-500}', high_res: '{PhotoURL-HighRes}' }]); $('body').toggleClass('tumblr_lightbox_active'); return false">
+                        <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"></a>
+                    </figure>{block:NotReblog}{block:Caption}
+                    <div class="post-body">{Caption}</div>{/block:Caption}{/block:NotReblog}
+                </section>
+                {/block:Photo}
+
+                {block:Panorama}
+                <section class="post-content">
+                    <figure class="panorama">{LinkOpenTag}
+                        <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}">{LinkCloseTag}
+                    </figure>{block:NotReblog}{block:Caption}
+                    <div class="post-body">{Caption}</div>{/block:Caption}{/block:NotReblog}
+                </section>
+                {/block:Panorama}
+
+                {block:Photoset}
+                <section class="post-content">
+                    <div class="npf_photoset" data-layout="{PhotosetLayout}">{block:Photos}
+                        <figure class="tmblr-full"> 
+                            <img class="npf_image" alt="{PhotoAlt}" src="{PhotoURL-HighRes}" data-orig-width="{PhotoWidth-HighRes}" data-orig-height="{PhotoHeight-HighRes}" data-highres="{PhotoURL-HighRes}" onclick="lightbox(this)">
+                        </figure>{/block:Photos}
+                        </div>{block:NotReblog}{block:Caption}
+                    <div class="post-body">{Caption}</div>{/block:Caption}{/block:NotReblog}
+                </section>
+                {/block:Photoset}
+
+                {block:Quote}
+                <section class="post-content">
+                    <p class="npf_quote">{Quote}</p>{block:Source}
+                    <p class="source">{Source}</p>{/block:Source}
+                </section>
+                {/block:Quote}
+
+                {block:Link}
+                <section class="post-content">
+                    <div class="npf-link-block {block:Thumbnail}has-poster not-{/block:Thumbnail}no-poster">
+                        <a href="{URL}" {Target}>{block:Thumbnail}
+                            <div class="poster" style="background-image: url({Thumbnail-HighRes});">{/block:Thumbnail}
+                                <div class="title">{Name}</div>{block:Thumbnail}
+                            </div>{/block:Thumbnail}
+                            <div class="bottom">{block:Excerpt}
+                                <div class="description">{Excerpt}</div>{/block:Excerpt}{block:Host}
+                                <div class="site-name">{Host}</div>{/block:Host}
+                            </div>
+                        </a>
+                    </div>{block:NotReblog}{block:Description}
+                    <div class="post-body">{Description}</div>{/block:Description}{/block:NotReblog}
+                </section>
+                {/block:Link}
+
+                {block:Chat}
+                <section class="post-content">{block:Title}
+                    <h2><a href="{Permalink}">{Title}</a></h2>{/block:Title}{block:Lines}
+                    <p class="npf_chat">{block:Label}<b>{Label}</b>{/block:Label} {Line}</p>{/block:Lines}
+                </section>
+                {/block:Chat}
+
+                {block:Audio}
+                <section class="post-content">
+                    {block:AudioEmbed}{AudioEmbed}{/block:AudioEmbed}
+                    {block:NotReblog}{block:Caption}
+                    <div class="post-body">{Caption}</div>{/block:Caption}
+                    {/block:NotReblog}
+                </section>
+                {/block:Audio}
+
+                {block:Video}
+                <section class="post-content">
+                    {VideoEmbed}{block:NotReblog}{block:Caption}
+                    <div class="post-body">{Caption}</div>{/block:Caption}
+                    {/block:NotReblog}
+                </section>
+                {/block:Video}
+
+                {block:Answer}
+                <section class="post-content">
+                    <div class="note-item note-item-question">
+                        <img class="ask-avatar" src="{AskerPortraitURL-96}">
+                        <div class="ask-content">
+                            <p class="asker"><b>{Asker}</b> asked:</p>
+                            <div class="ask-body">{Question}</div>
+                        </div>
+                    </div>{block:Answerer}
+                    <div class="note-item note-item-answer">
+                        <img class="ask-avatar" src="{AnswererPortraitURL-96}">
+                        <div class="ask-content">
+                            <p class="answerer"><b>{Answerer}</b> answered:</p>
+                            <div class="ask-body">{Answer}</div>
+                        </div>
+                    </div>{/block:Answerer}{block:NotReblog}
+                    <div class="post-replies">{Replies}</div>{/block:NotReblog}
+                </section>
+                {/block:Answer}
+
+                {block:RebloggedFrom}
+                <section class="reblog-list">{block:Reblogs}
+                    <div class="reblog-item">
+                        <div class="reblog-item-header">
+                            <div class="reblog-item-avatar">{block:IsActive}
+                                <a href="{Permalink}" target="_blank"><img src="{PortraitURL-64}" alt="{Username}"></a>{/block:IsActive}{block:IsDeactivated}
+                                <span class="is-deactivated"><img src="{PortraitURL-64}" alt="{Username}"></span>{/block:IsDeactivated}
+                            </div>
+                            <div class="reblog-item-username">{block:IsActive}
+                                <a class="tumblelog-name" href="{Permalink}" target="_blank"><b>{Username}</b></a>{/block:IsActive}{block:IsDeactivated}
+                                <span class="is-deactivated"><b>{Username}</b></span>{/block:IsDeactivated}
+                            </div>
+                        </div>
+                        <div class="reblog-item-body">{Body}</div>
+                    </div>{/block:Reblogs}
+                </section>
+                {/block:RebloggedFrom}
+                
+                {block:HasTags}
+                <div class="tags">{block:Tags}
+                    <a href="{TagURL}" class="tag">#{Tag}</a>{/block:Tags}
+                </div>
+                {/block:HasTags}
+
+                {block:IndexPage}
+                <div class="bar post-info">
+                    <a href="{Permalink}">{NoteCountWithLabel}</a> | {block:Date}
+                    <a href="{Permalink}">{TimeAgo}</a>{/block:Date}{block:ifReblogLink} | 
+                    <a href="{ReblogURL}" target="blank">reblog</a>{/block:ifReblogLink}
+                </div>
+                {/block:IndexPage}
+
+                {block:PermalinkPage}
+                <div class="post-info-perma">{block:Date}{block:RebloggedFrom}
+                    <div class="reblog-source">
+                        <b>via:</b> <a href="{ReblogParentURL}" class="reblog-link">{ReblogParentName}</a> | 
+                        <b>source:</b> <a href="{ReblogRootURL}" class="reblog-link">{ReblogRootName}</a>
+                    </div>{/block:RebloggedFrom}
+                    <div class="bar post-date-notecount">
+                        <span>{DayOfWeek}, {Month} {DayOfMonth}{DayOfMonthSuffix}, {Year}</span>{/block:Date}{block:NoteCount} | 
+                        <span>{NoteCountWithLabel}</span>
+                    </div>{/block:NoteCount}
+                </div>{block:PostNotes}
+                <div id="notes">
+                    {PostNotes}
+                </div>{/block:PostNotes}
+                {/block:PermalinkPage}
+            </article>
+            {/block:Posts}
+
+            {block:IndexPage}
+            <div class="bar bottom-pagination">{block:PreviousPage}
+                <a href="{PreviousPage}">«</a>{/block:PreviousPage} 
+                Page {CurrentPage} of {TotalPages} {block:NextPage}
+                <a href="{NextPage}">»</a>{/block:NextPage}
+            </div>
+            {/block:IndexPage}
+        </main>
+        </div>
+        
+        <!-- BACK TO TOP -->
+        <a href="#" title="Click to jump to top of page" onclick="dd_scrolltotop(); return false;" class="scroll-to-top"><i data-lucide="arrow-up-to-line"></i></a>
+
+        <script src="https://cdn.jsdelivr.net/gh/boscoxvi/npfphotosets@master/npfphotosets.js"></script>
+        
+        <script>
+            lucide.createIcons();
+
+            npfPhotosets(".post", {
+                photosetMargins: "10",
+                includeCommonPhotosets: true
+            });
+        </script>
+    </body>
+</html>
